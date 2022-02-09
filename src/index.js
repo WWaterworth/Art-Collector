@@ -33,7 +33,8 @@ const App = () => {
       {/* <Feature /> needs props for featuredResult, as well as setIsLoading and setSearchResults (clicking on searchable properties) */}
       {/* <Feature featuredResult = { featuredResult } setIsLoading= { setIsLoading } setSearchResults= { setSearchResults } /> */}
       {/* <Loading /> is static, but should only render when isLoading is true */}
-      <Loading /> {/* use a ternary and render null if isLoading is false */}
+      {isLoading ? <Loading /> : null}{" "}
+      {/* use a ternary and render null if isLoading is false */}
     </div>
   );
 };
