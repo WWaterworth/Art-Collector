@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 // These imports won't work until you fix ./components/index.js
-import { /*Feature,*/ Preview, Search, Title, Loading } from "./components";
+import { Feature, Preview, Search, Title, Loading } from "./components";
 
 const App = () => {
   /**
@@ -36,7 +36,7 @@ const App = () => {
           setFeaturedResult={setFeaturedResult}
         />}
       {/* <Feature /> needs props for featuredResult, as well as setIsLoading and setSearchResults (clicking on searchable properties) */}
-      {/* <Feature featuredResult = { featuredResult } setIsLoading= { setIsLoading } setSearchResults= { setSearchResults } /> */}
+      {<Feature featuredResult = { featuredResult } setIsLoading= { setIsLoading } setSearchResults= { setSearchResults } />}
       {/* <Loading /> is static, but should only render when isLoading is true */}
       {isLoading ? <Loading /> : null}{" "}
       {/* use a ternary and render null if isLoading is false */}
