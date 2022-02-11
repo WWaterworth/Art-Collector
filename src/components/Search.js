@@ -45,7 +45,7 @@ const Search = (props) => {
             classification,
             queryString,
           });
-          setSearchResults(queryResults.records);
+          setSearchResults(queryResults);
         } catch (error) {
           console.error(error);
         } finally {
@@ -53,6 +53,7 @@ const Search = (props) => {
         }
       }}
     >
+      
       <fieldset>
         <label htmlFor="keywords">Query</label>
         <input
