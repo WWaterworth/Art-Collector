@@ -2,9 +2,26 @@ import React from 'react';
 
 import { fetchQueryResultsFromURL } from '../api';
 
+const transformRecord = (record) => ({
+  dated: record.dated,
+  description: record.description,
+  primaryImageURL: record.primaryimageurl,
+  title: record.title,
+  images: record.images,
+  culture: record.culture,
+  style: record.style,
+  technique: record.technique,
+  medium: record.medium,
+  dimensions: record.dimensions,
+  people: record.peole,
+  department: record.department,
+  divison: record.division,
+  contact: record.contact,
+  creditline: record.creditline,
+})
+
 const Preview = (props) => {
-  
-const { searchResults: { info, records }, setSearchResults, setFeaturedResult, setIsLoading } = props
+const { searchResults: { info, records }, setSearchResults, setFeaturedResult, setIsLoading } = props;
 
   async function fetchPage(pageUrl) {
     setIsLoading(true);
@@ -21,7 +38,6 @@ const { searchResults: { info, records }, setSearchResults, setFeaturedResult, s
 
   return <aside id="preview">
     <header className="pagination">
-      {/* This button should be disabled if nothing is set in info.prev, and should call fetchPage with info.prev when clicked */}
       <button 
         disabled={!info.prev} 
         className="previous"
@@ -30,7 +46,6 @@ const { searchResults: { info, records }, setSearchResults, setFeaturedResult, s
           fetchPage(info.prev)
         }}
         >Previous</button>
-      {/* This button should be disabled if nothing is set in info.next, and should call fetchPage with info.next when clicked */}
       <button
         disabled={!info.next}
         className="next"
@@ -41,7 +56,9 @@ const { searchResults: { info, records }, setSearchResults, setFeaturedResult, s
         >Next</button>
     </header>
     <section className="results">
-      {records.map((record, index) => {
+      {records.map((rawRecord, index) => {
+        const record = transformRecord(rawRecord);
+
         return (
           <div  
             key={ index }
@@ -51,7 +68,7 @@ const { searchResults: { info, records }, setSearchResults, setFeaturedResult, s
               setFeaturedResult(record)
             }}>
             { 
-              record.primaryimageurl ? <img src={ record.primaryimageurl } alt={ record.description } /> : null
+              record.primaryImageURL && <img src={ record.primaryImageURL } alt={ record.description } /> 
             }
             {
               record.title ? <h3>{ record.title }</h3> : <h3>MISSING INFO</h3>
